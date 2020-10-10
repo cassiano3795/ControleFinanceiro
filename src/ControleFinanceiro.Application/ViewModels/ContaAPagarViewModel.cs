@@ -1,16 +1,13 @@
 using System;
 
-namespace ControleFinanceiro.Domain.Models
+namespace ControleFinanceiro.Application.ViewModels
 {
-    public class ContaAPagar : BaseModel
+    public class ContaAPagarViewModel
     {
         public string Nome { get; set; }
         public double ValorOriginal { get; set; }
         public double ValorCorrigido { get; set; }
-        public DateTime DataVencimento { get; set; }
         public DateTime DataPagamento { get; set; }
         public int QtdDiasAtraso { get; set; }
-        public double Multa { get; set; }
-        public double Juro { get; set; }
     }
 }

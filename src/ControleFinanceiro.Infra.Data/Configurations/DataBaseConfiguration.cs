@@ -21,7 +21,7 @@ namespace ControleFinanceiro.Infra.Data.Configurations
 
             services.AddDbContext<AppDbContext>(options => 
                 options.UseMySql(configuration.GetConnectionString("ControleFinanceiro"),
-                b => b.MigrationsAssembly("ControleFinanceiro.Infra.Data")));
+                b => b.MigrationsAssembly("ControleFinanceiro.Services.Api")));
         }
 
         public static void AddRepositories(this IServiceCollection services)

@@ -3,7 +3,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace ControleFinanceiro.Domain.Validation
+namespace ControleFinanceiro.Domain.Validations
 {
     public class ValidationResult : IValidationResult
     {

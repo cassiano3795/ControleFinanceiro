@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ControleFinanceiro.Domain.Validation
+namespace ControleFinanceiro.Domain.Validations
 {
     public interface IValidationResult
     {

@@ -1,3 +1,5 @@
+using ControleFinanceiro.Domain.Models;
+using ControleFinanceiro.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleFinanceiro.Infra.Data.Context
@@ -8,9 +10,11 @@ namespace ControleFinanceiro.Infra.Data.Context
         {
         }
 
+        public DbSet<ContaAPagar> ContasAPagar { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // TODO: AQUI AS CONFIGURAÇÕES
+            modelBuilder.ApplyConfiguration(new ContaAPagarMap());
 
             base.OnModelCreating(modelBuilder);
         }

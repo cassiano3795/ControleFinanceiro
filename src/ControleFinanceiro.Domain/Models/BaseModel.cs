@@ -13,7 +13,7 @@ namespace ControleFinanceiro.Domain.Models
         [Column("data_criacao")]
         public DateTime DataCriação { get; set; }
 
-        [Column("data_update")]
-        public DateTime DataUpdate { get; set; }
+        [Column("data_atualizacao")]
+        public DateTime DataAtualizacao { get; set; }
     }
 }

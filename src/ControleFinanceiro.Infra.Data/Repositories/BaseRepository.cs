@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ControleFinanceiro.Domain.Interfaces.Repositories;
 using ControleFinanceiro.Domain.Models;
+using ControleFinanceiro.Domain.Validations;
 using ControleFinanceiro.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,7 +68,7 @@ namespace ControleFinanceiro.Infra.Data.Repositories
                 // _set.Update(model);
 
                 model.DataCriação = modelDb.DataCriação;
-                model.DataUpdate = DateTime.UtcNow;
+                model.DataAtualizacao = DateTime.UtcNow;
 
                 _appDbContext.Entry(modelDb).CurrentValues.SetValues(model);
                 return;
@@ -92,11 +93,17 @@ namespace ControleFinanceiro.Infra.Data.Repositories
             }
         }
 
-        public async Task<bool> SaveChangesAsync()
+        public async Task<ValidationResult> SaveChangesAsync()
         {
             try
             {
-                return await _appDbContext.SaveChangesAsync() > 0;
+                var validationResult = new ValidationResult();
+                var result = await _appDbContext.SaveChangesAsync() > 0;
+
+                if (!result)
+                    validationResult.AddError("Ocorreu um erro durante a gravação dos dados");
+
+                return validationResult;
             }
             catch (Exception ex)
             {
@@ -104,11 +111,17 @@ namespace ControleFinanceiro.Infra.Data.Repositories
             }
         }
 
-        public bool SaveChanges()
+        public ValidationResult SaveChanges()
         {
             try
             {
-                return _appDbContext.SaveChanges() > 0;
+                var validationResult = new ValidationResult();
+                var result = _appDbContext.SaveChanges() > 0;
+
+                if (!result)
+                    validationResult.AddError("Ocorreu um erro durante a gravação dos dados");
+
+                return validationResult;
             }
             catch (Exception ex)
             {

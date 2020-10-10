@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ControleFinanceiro.Domain.Models;
+using ControleFinanceiro.Domain.Validations;
 
 namespace ControleFinanceiro.Domain.Interfaces.Repositories
 {
@@ -14,7 +15,7 @@ namespace ControleFinanceiro.Domain.Interfaces.Repositories
          Task UpdateAsync(T model);
          Task DeleteAsync(Guid id);
 
-         Task<bool> SaveChangesAsync();
-         bool SaveChanges();
+         Task<ValidationResult> SaveChangesAsync();
+         ValidationResult SaveChanges();
     }
 }
