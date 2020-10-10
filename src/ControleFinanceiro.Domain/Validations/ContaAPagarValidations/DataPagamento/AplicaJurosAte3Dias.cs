@@ -11,7 +11,7 @@ namespace ControleFinanceiro.Domain.Validations.ContaAPagarValidations.DataPagam
         public void Calcula(ContaAPagar contaAPagar)
         {
             var difDate = (contaAPagar.DataPagamento - contaAPagar.DataVencimento).Days;
-            if (difDate <= 3)
+            if (difDate > 0 && difDate <= 3)
             {
                 var multa = contaAPagar.ValorOriginal * 0.02;
                 var juros = contaAPagar.ValorOriginal * (difDate * 0.001);
