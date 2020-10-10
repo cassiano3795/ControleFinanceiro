@@ -9,7 +9,8 @@ namespace ControleFinanceiro.Application.AutoMapper
         public DtoToModelMappingProfile()
         {
             CreateMap<ContaAPagarInsertDto, ContaAPagar>()
-                .ForMember(p => p.ValorOriginal, m => m.MapFrom(p => p.Valor));
+                .ForMember(p => p.ValorOriginal, m => m.MapFrom(p => p.Valor))
+                .ForMember(p => p.ValorCorrigido, m => m.MapFrom(p => p.Valor));
         }
     }
 }

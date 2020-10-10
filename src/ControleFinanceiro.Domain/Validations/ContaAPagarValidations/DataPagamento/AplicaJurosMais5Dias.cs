@@ -11,10 +11,12 @@ namespace ControleFinanceiro.Domain.Validations.ContaAPagarValidations.DataPagam
             var difDate = (contaAPagar.DataPagamento - contaAPagar.DataVencimento).Days;
             if (difDate > 5)
             {
-                var multa = contaAPagar.ValorOriginal * 0.05;
-                var juros = contaAPagar.ValorOriginal * (difDate * 0.003);
-                contaAPagar.ValorCorrigido = contaAPagar.ValorOriginal + multa + juros;
                 contaAPagar.QtdDiasAtraso = difDate;
+                contaAPagar.Juro = difDate * 0.003;
+                contaAPagar.Multa = 0.05;
+                var multa = contaAPagar.ValorOriginal * contaAPagar.Multa;
+                var juros = contaAPagar.ValorOriginal * contaAPagar.Juro;
+                contaAPagar.ValorCorrigido += multa + juros;
                 return;
             }
 

@@ -22,14 +22,12 @@ namespace ControleFinanceiro.Domain.Services.Services
         public async Task<IValidationResult> RegistraContaAPagar(ContaAPagarInsertDto contaAPagar)
         {
             var contaAPagarModel = _mapper.Map<ContaAPagar>(contaAPagar);
-
             var aplicaJurosAte3Dias = new AplicaJurosAte3dias();
             var aplicaJurosAte5Dias = new AplicaJurosAte5Dias();
             var aplicaJurosMais5Dias = new AplicaJurosMais5Dias();
 
             aplicaJurosAte3Dias.Proximo = aplicaJurosAte5Dias;
             aplicaJurosAte5Dias.Proximo = aplicaJurosMais5Dias;
-
             aplicaJurosAte3Dias.Calcula(contaAPagarModel);
 
             await _contaAPagarRepository.InsertAsync(contaAPagarModel);

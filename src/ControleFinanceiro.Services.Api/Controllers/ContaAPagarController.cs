@@ -19,13 +19,13 @@ namespace ControleFinanceiro.Services.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IList<ContaAPagarViewModel>>> GetAllAsync()
         {
-            return Ok(await _contaAPagarAppService.GetAllAsync());
+            return CustomResponse(await _contaAPagarAppService.GetAllAsync());
         }
 
         [HttpPost]
         public async Task<ActionResult> PostAsync(ContaAPagarInsertViewModel contaAPagar)
         {
-            return Ok(await _contaAPagarAppService.CreateAsync(contaAPagar));
+            return CustomResponse(await _contaAPagarAppService.CreateAsync(contaAPagar));
         }
     }
 }
